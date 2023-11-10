@@ -18,7 +18,7 @@
 
 </style>
 <script>
-import ClientGestion from "src/components/Gestion/ClientGestion.vue";
+import ClientGestion from "src/components/Cliente/ClientGestion.vue";
 export default {
   name: "ClientPage",
   components: {
