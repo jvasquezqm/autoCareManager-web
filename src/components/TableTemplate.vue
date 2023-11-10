@@ -3,25 +3,20 @@
     <q-table
       grid="$q.screen.xs"
       flat bordered
-      title="Treats"
+      title="Clientes"
       :rows="filteredRows"
       :columns="columns"
-      :filter="filter"
       row-key="clienteId"
     >
-      <template v-slot:top-right>
-        <q-input  borderless dense debounce="300" v-model="filter" placeholder="Search" class="q-mb-md">
+    <template v-slot:top-right>
+      <q-input  borderless dense debounce="300" v-model="filter" placeholder="Search" class="q-mb-md">
           <template v-slot:append>
                 <q-icon name="search" />
-              </template>
+          </template>
         </q-input>
-      </template>
-
-      <!-- area donde se redenriza el body -->
+    </template>
       <template v-slot:body="props">
-        <!-- fila de la tabla -->
         <q-tr :props="props">
-          <!-- celda de la tabla -->
           <q-td
             v-for="col in props.cols"
             :key="col.name"
@@ -70,7 +65,7 @@ export default {
     });
 
     return {
-      filter: ref(''),
+      filter,
       filteredRows,
     };
   },
