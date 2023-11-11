@@ -8,6 +8,7 @@ const routes = [
       { path: "client", component: () => import("pages/ClientPage.vue") },
       { path: 'Inicio', component: () => import("pages/LoginForm.vue") },
       { path: 'vehiculo', component: () => import('pages/GestionVehiculo.vue') },
+      { path: 'propietario', component: () => import('pages/GestionPropietario.vue') },
     ]
   },
   {

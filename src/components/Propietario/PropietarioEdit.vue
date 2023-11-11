@@ -84,7 +84,7 @@
       // Método para guardar la edición y enviarla al servidor
       async guardarEdicion() {
       try {
-        const response = await axios.put(`http://localhost:5243/api/Propietario/Update/${this.edicion.propietarioId}`, this.edicion);
+        const response = await axios.put(`http://localhost:5243/api/Propietario/Update${this.edicion.propietarioId}`, this.edicion);
         
         console.log('Registro actualizado:', response.data);
 
