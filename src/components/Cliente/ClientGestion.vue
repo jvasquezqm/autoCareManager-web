@@ -1,11 +1,13 @@
 
 <template>
   <div>
-    <ClientModEditar ref="clientModEditar" />
+    <ClientModEditar @edicion-completada="handleEdicionCompletada" ref="clientModEditar" />
     <q-table
       :rows="datosFiltrados"
       :columns="columns"
       row-key="clienteId"
+      title="Gestión de Clientes"
+      :header-class="['text-center']"
     >
 
 
@@ -90,6 +92,10 @@ export default{
   },
 
   methods: {
+    handleEdicionCompletada() {
+    // Actualiza tus datos después de editar
+    this.getDatos();
+    },
     async getDatos(){
       try {
         const response = await axios.get('http://localhost:5243/api/Cliente/GetAll');

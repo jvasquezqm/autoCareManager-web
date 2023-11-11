@@ -1,18 +1,38 @@
 <template>
   <div>
-    <!-- ... Resto del código ... -->
 
-    <!-- Modal para la edición -->
-    <q-dialog v-model="mostrarModal">
-      <q-card>
+    <!-- MODAL FORMULARIO -->
+    <q-dialog v-model="mostrarModal" persistent>
+      <q-card style="min-width: 450px">
         <q-card-section>
-          <q-input v-model="edicion.nombre" label="Nombre" />
-          <q-input v-model="edicion.apellido" label="Apellido" />
-          <!-- Agrega más campos de edición según sea necesario -->
-
-          <q-btn @click="guardarEdicion" label="Guardar" color="primary" />
-          <q-btn @click="cerrarModal" label="Cancelar" />
+          <q-input v-model="edicion.nombre" autofocus label="Nombre" />
         </q-card-section>
+        <q-card-section>
+          <q-input v-model="edicion.apellido" autofocus label="Apellido" />
+        </q-card-section>
+        <q-card-section>
+          <q-input v-model="edicion.correoElectronico" autofocus label="Correo" />
+        </q-card-section>
+        <q-card-section>
+          <q-input v-model="edicion.telefono" autofocus label="Telefono" />
+        </q-card-section>
+        <q-card-section>
+          <q-input v-model="edicion.direccion" autofocus label="Direccion" />
+        </q-card-section>
+        <q-card-section>
+          <q-input v-model="password" autofocus label="Contraseña" />
+        </q-card-section>
+        <q-card-section>
+          <q-input v-model="password" autofocus label="Repite Contraseña" />
+        </q-card-section>
+
+          <!-- BOTONES -->
+        <q-card-actions align="center" class="text-primary">
+          <q-btn @click="guardarEdicion" label="Actualizar" color="primary" v-close-popup/>
+
+
+            <q-btn @click="cerrarModal" label="Cancelar" v-close-popup/>
+        </q-card-actions>
       </q-card>
     </q-dialog>
   </div>
@@ -27,10 +47,13 @@ export default {
   data() {
     return {
       // ... Resto del código ...
-      mostrarModal: false,
+      mostrarModal: ref(false),
       edicion: {
         nombre: '',
         apellido: '',
+        correo: '',
+        telefono: '',
+        direccion: '',
         // Agrega más propiedades según sea necesario
       },
     };
@@ -53,6 +76,9 @@ export default {
       this.edicion = {
         nombre: '',
         apellido: '',
+        correo: '',
+        telefono: '',
+        direccion: '',
         // Limpia más propiedades según sea necesario
       };
     },
@@ -64,9 +90,12 @@ export default {
         const response = await axios.put(`http://localhost:5243/api/Cliente/Update/${this.edicion.clienteId}`, this.edicion);
         console.log('Registro actualizado:', response.data);
         // Actualiza tus datos después de editar
-        this.getDatos();
+        //this.getDatos();
+        location.reload();
         // Cierra el modal
-        this.cerrarModal();
+        this.$nextTick(() => {
+          this.cerrarModal();
+        });
       } catch (error) {
         console.error('Error al actualizar:', error);
       }
