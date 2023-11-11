@@ -23,10 +23,14 @@
                 <q-select
                     v-model="nuevoV.clienteId"
                     :options="clientes"
-                    option-value="clienteId"  
+                    option-value="clienteId"
                     :option-label="option => `${option.nombre} ${option.apellido}`"
+<<<<<<< HEAD
+
+=======
                     label="Cliente"
                     
+>>>>>>> 5a0866531c060f7ad42b06947be0b56b822cc191
                 />
             <!-- </q-input> -->
 
@@ -40,7 +44,7 @@
       </q-dialog>
     </div>
   </template>
-  
+
   <style>
   .titulo{
     text-align: center;
@@ -51,25 +55,25 @@
     width: 550px;
     align-content: center;
   }
-  
+
   .buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 25px; 
+    margin-top: 25px;
   }
-  
+
   .buttons q-btn {
-    width: 48%; 
- 
+    width: 48%;
+
   }
-  
+
   .buttons q-btn:last-child {
     margin-left: 10px;
   }
 
   .custom-label .q-field__label {
-  font-size: 16px; 
-  
+  font-size: 16px;
+
 }
   </style>
 
@@ -88,7 +92,7 @@ export default{
             anio: '',
             numeroPlaca: '',
             clienteId: '',
-         
+
         },
         clientes: [""],
         fab_vehiculos: ["Kia", "Hyundai", "Honda", "Toyota", "Nissan"],
@@ -98,11 +102,11 @@ export default{
 
 
     mounted() {
-        this.getClientes()   
+        this.getClientes()
 
     },
     methods: {
-            
+
         abrirModalnuevoV() {
             this.mostrarModal = true;
         },
@@ -152,8 +156,13 @@ export default{
                     })
 
 
+<<<<<<< HEAD
+
+            //location.reload();
+=======
             
             location.reload();
+>>>>>>> 5a0866531c060f7ad42b06947be0b56b822cc191
             this.cerrarModal();
         } catch (error) {
             console.error('Error al actualizar:', error);
@@ -186,5 +195,4 @@ export default{
         }
 },
 }
-//ADD
 </script>

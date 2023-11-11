@@ -134,7 +134,7 @@ export default{
         persistent: true,
       }).onOk(async () => {
         try {
-          const response = await axios.delete(`http://localhost:5243/api/Propietario/Delete${fila.PropietarioId}`);
+          const response = await axios.delete(`http://localhost:5243/api/Propietario/Delete${fila.propietarioId}`);
           
           console.log('Registro eliminado:', response.data);
           // Actualizar tus datos después de eliminar
