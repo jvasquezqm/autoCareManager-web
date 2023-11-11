@@ -1,4 +1,4 @@
-<!-- ESTE ES MI ARCHIVO COMPONENTE TABLE TableTemplate.vue -->
+<!-- ESTE ES MI ARCHIVO COMPONENTE TABLE TableTemplate.vue
 <template>
   <div class="q-pa-md">
     <q-table
@@ -21,12 +21,12 @@
         <q-tr :props="props">
           <q-td v-for="col in columns" :key="col.name" :props="col.props">
           <!-- Agrega condición para la columna "Acciones" -->
-          <template v-if="col.name === 'Acciones'">
+          <!-- <template v-if="col.name === 'Acciones'">
               <q-btn @click="editRow(props.row)" icon="edit"  flat color="primary" />
               <q-btn @click="deleteRow(props.row)" icon="delete" flat color="negative" />
           </template>
                       <!-- Renderiza contenido normalmente para otras columnas -->
-          <template v-else>
+          <!-- <template v-else>
               {{ props.row[col.name] }}
           </template>
           </q-td>
@@ -34,8 +34,8 @@
       </template>
     </q-table>
   </div>
-</template>
-
+</template> --> -->
+<!--
 <script>
 import { ref, computed, watch } from 'vue';
 
@@ -81,4 +81,4 @@ export default {
 <style scoped>
 .text-center {
   text-align: center;}
-</style>
+</style> -->

@@ -13,9 +13,9 @@
                 <q-select
                     v-model="nuevoV.clienteId"
                     :options="clientes"
-                    option-value="clienteId"  
+                    option-value="clienteId"
                     :option-label="option => `${option.nombre} ${option.apellido}`"
-                    
+
                 />
             <!-- </q-input> -->
 
@@ -29,7 +29,7 @@
       </q-dialog>
     </div>
   </template>
-  
+
   <style>
   .titulo{
     text-align: center;
@@ -40,25 +40,25 @@
     width: 550px;
     align-content: center;
   }
-  
+
   .buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 25px; 
+    margin-top: 25px;
   }
-  
+
   .buttons q-btn {
-    width: 48%; 
- 
+    width: 48%;
+
   }
-  
+
   .buttons q-btn:last-child {
     margin-left: 10px;
   }
 
   .custom-label .q-field__label {
-  font-size: 16px; 
-  
+  font-size: 16px;
+
 }
   </style>
 
@@ -77,7 +77,7 @@ export default{
             anio: '',
             numeroPlaca: '',
             clienteId: '',
-         
+
         },
         clientes: [],
       };
@@ -85,11 +85,11 @@ export default{
 
 
     mounted() {
-        this.getClientes()   
+        this.getClientes()
 
     },
     methods: {
-            
+
         abrirModalnuevoV() {
             this.mostrarModal = true;
         },
@@ -139,7 +139,7 @@ export default{
                     })
 
 
-            
+
             //location.reload();
             this.cerrarModal();
         } catch (error) {
