@@ -1,43 +1,30 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated >
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+    <q-tabs
+      v-model="activeTab"
+      align="center"
+      class="bg-primary text-white"
+    >
+      <q-tab
+        v-for="(tab, index) in tabs"
+        :key="index"
+        :label="tab.label"
+        :name="tab.name"
+      />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+    </q-tabs>
+    <!-- Botón de Cerrar Sesión -->
+    <q-btn flat dense round
+      icon="exit_to_app"
+      @click="cerrarSesion"
+      class="q-ml-auto"
 
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
+    />
+  </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -47,69 +34,44 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
+
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    // EssentialLink
+  },
+  methods: {
+    cerrarSesion() {
+      // Lógica para cerrar sesión
+      console.log('Cerrar Sesión');
+      // Puedes redirigir a la página de inicio de sesión, por ejemplo:
+      // this.$router.push('/login');
+    },
   },
 
   setup () {
-    const leftDrawerOpen = ref(false)
+    var leftDrawerOpen = ref(false)
 
     return {
-      essentialLinks: linksList,
+      activeTab: 'perfil', // Nombre de la pestaña activa inicial
+      tabs: [
+        { name: 'perfil', label: 'Perfil' },
+        { name: 'gestionTaller', label: 'Gestión Taller' },
+        { name: 'clientes', label: 'Gestion Clientes' },
+        { name: 'servicios', label: 'Servicios' },
+        { name: 'facturas', label: 'Facturas' },
+        { name: 'inventario', label: 'Inventario' },
+        { name: 'reportes', label: 'Reportes' },
+      ],
+
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
+
     }
   }
 })

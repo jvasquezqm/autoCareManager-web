@@ -7,7 +7,7 @@
       :columns="columns"
       row-key="clienteId"
       title="Gestión de Clientes"
-      :header-class="['text-center']"
+
     >
 
 
