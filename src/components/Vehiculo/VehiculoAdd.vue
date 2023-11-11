@@ -4,10 +4,20 @@
         <q-card class="qcard-modal-edit">
           <q-card-section>
             <div class="titulo">Agregar Vehiculo</div>
-            <q-input v-model="nuevoV.marca" label="Fabricante" class="custom-label"/>
+            <!-- <q-input v-model="nuevoV.marca" label="Fabricante" class="custom-label"/> -->
+            <q-select 
+                v-model="nuevoV.marca"
+                :options= "fab_vehiculos"
+                label="Fabricante"
+            />
             <q-input v-model="nuevoV.modelo" label="Modelo" class="custom-label" />
-            <q-input v-model="nuevoV.anio" label="Año" class="custom-label" />
-            <q-input v-model="nuevoV.numeroPlaca" label="Número de Placa" class="custom-label" />
+            <!-- <q-input v-model="nuevoV.anio" label="Año" class="custom-label" /> -->
+            <q-select 
+                v-model="nuevoV.anio"
+                :options= generateYears(1994,2023)
+                label="Año"
+            />
+            <q-input v-model="nuevoV.numeroPlaca" label="Número de Placa" class="custom-label" Placeholder="AAA123"/>
             <!-- <q-input v-model="nuevoV.clienteId" label="Codigo Cliente" class="custom-label" /> -->
             <!-- <q-input v-model="nuevoV.clienteId" label="Cliente" class="custom-label"> -->
                 <q-select
@@ -15,6 +25,7 @@
                     :options="clientes"
                     option-value="clienteId"  
                     :option-label="option => `${option.nombre} ${option.apellido}`"
+                    label="Cliente"
                     
                 />
             <!-- </q-input> -->
@@ -79,7 +90,9 @@ export default{
             clienteId: '',
          
         },
-        clientes: [],
+        clientes: [""],
+        fab_vehiculos: ["Kia", "Hyundai", "Honda", "Toyota", "Nissan"],
+        //opcionYear: generateYears(1994,2023),
       };
     },
 
@@ -140,7 +153,7 @@ export default{
 
 
             
-            //location.reload();
+            location.reload();
             this.cerrarModal();
         } catch (error) {
             console.error('Error al actualizar:', error);
@@ -155,6 +168,21 @@ export default{
         } catch (error) {
             console.error('Error al obtener clientes:', error);
         }
+        },
+
+        generateYears(startYear, endYear) {
+          const options = [];
+          for (let year = startYear; year <= endYear; year++) {
+            options.push({
+              label: year.toString(),
+              value: year
+            });
+          }
+          return options;
+        },
+
+        placaToMayus(){
+          
         }
 },
 }
