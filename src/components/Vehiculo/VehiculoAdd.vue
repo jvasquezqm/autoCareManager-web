@@ -25,12 +25,8 @@
                     :options="clientes"
                     option-value="clienteId"
                     :option-label="option => `${option.nombre} ${option.apellido}`"
-<<<<<<< HEAD
-
-=======
                     label="Cliente"
                     
->>>>>>> 5a0866531c060f7ad42b06947be0b56b822cc191
                 />
             <!-- </q-input> -->
 
@@ -153,16 +149,8 @@ export default{
                             position: 'top',
                             timeout: 10000
                         })
-                    })
-
-
-<<<<<<< HEAD
-
-            //location.reload();
-=======
-            
+                    })     
             location.reload();
->>>>>>> 5a0866531c060f7ad42b06947be0b56b822cc191
             this.cerrarModal();
         } catch (error) {
             console.error('Error al actualizar:', error);
