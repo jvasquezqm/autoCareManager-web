@@ -2,16 +2,16 @@
 <template>
   <div>
     <VehiculoEditar ref="VehiculoEditar"/>
-    
+
     <q-table
       :rows="datosFiltrados"
       :columns="columns"
       row-key="vehiculoId"
       :rows-per-page-options="[10,50,100]"
-      
+
     >
 
-      
+
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td v-for="columna in columns" :key="columna.field" align="left">
@@ -26,7 +26,7 @@
           </q-td>
         </q-tr>
       </template>
-      
+
 
 
       <template v-slot:top-right>
@@ -61,7 +61,7 @@ export default{
   components: {
     VehiculoEditar,
   },
-  
+
   data(){
     return{
       datos: [],
@@ -87,8 +87,8 @@ export default{
           String(this.celda(dato, columna)).toLowerCase().includes(this.busqueda.toLowerCase())
         )
       );
-      
-      
+
+
     },
   },
 

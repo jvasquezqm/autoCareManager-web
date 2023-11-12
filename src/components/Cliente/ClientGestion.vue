@@ -1,34 +1,24 @@
-
 <template>
   <div>
-    <ClientModEditar @edicion-completada="handleEdicionCompletada" ref="clientModEditar" />
+    <ClientModEditar  ref="clientModEditar" />
     <q-table
       :rows="datosFiltrados"
       :columns="columns"
       row-key="clienteId"
-      title="Gestión de Clientes"
-
-    >
-
-
+      :rows-per-page-options="[10,50,100]">
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td v-for="columna in columns" :key="columna.field" align="left">
             <template v-if="columna.field !== 'acciones'">
               {{ celda(props.row, columna) }}
             </template>
-
             <template v-else>
               <q-btn @click="editarFila(props.row)" icon="edit"  flat color="primary" />
               <q-btn @click="eliminarFila(props.row)" icon="delete" flat color="negative" />
-
             </template>
           </q-td>
         </q-tr>
       </template>
-
-
-
       <template v-slot:top-right>
           <q-input borderless dense debounce="300" v-model="busqueda" placeholder="Busqueda">
             <template v-slot:append>
@@ -39,6 +29,9 @@
     </q-table>
   </div>
 </template>
+
+
+
 
 
 <style>
@@ -56,6 +49,7 @@ import ClientModEditar from 'src/components/Cliente/ClientModEditar.vue';
 export default{
   components: {
     ClientModEditar,
+
   },
 
   data(){
@@ -92,10 +86,13 @@ export default{
   },
 
   methods: {
-    handleEdicionCompletada() {
-    // Actualiza tus datos después de editar
-    this.getDatos();
-    },
+    cerrarDialogError() {
+    this.dependencyError = false;
+  },
+    // handleEdicionCompletada() {
+    // // Actualiza tus datos después de editar
+    // this.getDatos();
+    // },
     async getDatos(){
       try {
         const response = await axios.get('http://localhost:5243/api/Cliente/GetAll');
@@ -131,13 +128,15 @@ export default{
       }).onOk(async () => {
         try {
           const response = await axios.delete(`http://localhost:5243/api/Cliente/Delete/${fila.clienteId}`);
-          //console.log('ID enviado: ',fila.clienteId)
           console.log('Registro eliminado:', response.data);
           // Actualizar tus datos después de eliminar
           this.getDatos();
         } catch (error) {
           console.error('Error al eliminar:', error);
-        }
+          if (error.response && error.response.status === 500)
+            this.dependencyError = true;
+
+          }
       }).onCancel(() => {
         // console.log('>>>> Cancel')
       })
